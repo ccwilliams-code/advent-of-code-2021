@@ -15,8 +15,8 @@ def main():
 
     c = 0
     while c < len(matrix[0]):
-        gamma_rate_list.append(calc_gamma_digit(count_bits(get_col(matrix, c))))
-        epsilon_rate_list.append(calc_epsilon_digit(count_bits(get_col(matrix, c))))
+        gamma_rate_list.append(calc_most_common_bit(count_bits(get_col(matrix, c))))
+        epsilon_rate_list.append(calc_least_common_bit(count_bits(get_col(matrix, c))))
         c += 1
 
     gamma_rate_binary = get_binary_from_bitlist(gamma_rate_list)
@@ -42,19 +42,19 @@ def get_col(matrix: list[list], col_number) -> list:
     return results
 
 
-def calc_gamma_digit(zero_one_value_list):
+def calc_most_common_bit(zero_one_freq_list):
     """Given a list containing the frequency of zeroes and ones
     return whether zeroes or ones were more common"""
-    if zero_one_value_list[0] > zero_one_value_list[1]:
+    if zero_one_freq_list[0] > zero_one_freq_list[1]:
         return 0
     else:
         return 1
 
 
-def calc_epsilon_digit(zero_one_value_list):
+def calc_least_common_bit(zero_one_freq_list):
     """Given a list containing the frequency of zeroes and ones
     return whether zeroes or ones were less common"""
-    if zero_one_value_list[0] > zero_one_value_list[1]:
+    if zero_one_freq_list[0] > zero_one_freq_list[1]:
         return 1
     else:
         return 0
